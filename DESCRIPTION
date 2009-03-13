@@ -1,0 +1,15 @@
+Package: CNTools
+Version: 1.0.1
+Title: Convert segment data so that classification can be performed 
+  on copy number data 
+Author: Jianhua Zhang
+Maintainer: J. Zhang <jzhang@jimmy.harvard.edu>
+Depends: methods, stats, genefilter, genefilter
+Description: This package provides tools to convert the output of 
+  segmentation analysis using DNAcopy to a matrix structure so that 
+  classifications can be applied to segmented copy number data 
+Keyword: copy number
+biocViews: Platform, Microarray
+License: LGPL
+ZipData: no
+LazyLoad: no

@@ -1,0 +1,8 @@
+import(genefilter)
+
+exportClasses(CNSeg, RS)
+
+exportMethods(getRS, segBy, rs, genefilter, getCor, "rs<-", getDist, "segList<-", show, segList, madFilter)
+
+export(diffBy, CNSeg)
+
