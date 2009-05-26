@@ -8,11 +8,12 @@ setClass("CNSeg", representation(segList = "data.frame"))
 setClass("RS", representation(rs = "ANY", 
                               by = "character"))
 
-setGeneric("getRS", function(object, by, input, XY)
+setGeneric("getRS", function(object, by, input, XY, geneMap)
            standardGeneric("getRS"))
 setMethod("getRS", "CNSeg", 
           function(object, by = c("region", "gene", "pair"), 
-            input = TRUE, XY = FALSE) seg2RS(object, by, input, XY))
+            input = TRUE, XY = FALSE, geneMap)
+              seg2RS(object, by, input, XY, geneMap))
 
 setGeneric("segList", function(object)
            standardGeneric("segList"))
