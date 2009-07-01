@@ -153,8 +153,8 @@ convertNA <- function(convertMe){
 
 collapseSegList <- function(segList, geneMap){
   splited <- split.data.frame(segList, factor(segList[, "ID"]))
-  template <- geneMap
-  rownames(template) <- template[, "geneid"]
+  template <- as.matrix(geneMap)
+  rownames(template) <- gsub(" ", "", template[, "geneid"])
   cat("\nProcessing samples .")
   for(sp in names(splited)){
     cat(".")
@@ -162,7 +162,7 @@ collapseSegList <- function(segList, geneMap){
     colnames(template) <- c(colnames(template)[-length(colnames(template))], 
                             sp)
     filled <- getSegMeanByGene(splited[[sp]], geneMap)
-    template[as.character(filled[, "geneid"]), sp] <- 
+    template[as.character(gsub(" ", "", filled[, "geneid"])), sp] <- 
                             as.numeric(filled[, "seg.mean"])
   }
   cat(" Done\n")
@@ -200,7 +200,7 @@ getSegMeanByGene <- function (sampleSeg, geneInfo) {
   sampleSeg[, "loc.end"] <- gsub(" ", "", sampleSeg[, "loc.end"])
   mapped <- do.call("rbind", args = apply(sampleSeg, 1, mapMCA))
   
-  return(collapseDupGenes(mapped[!is.na(mapped[, "geneid"]), ]))
+  return(collapseDupGenes(mapped[which(!is.na(mapped[, "geneid"])), ]))
 }
 
 
@@ -214,11 +214,11 @@ collapseDupGenes <- function(mapped){
       dups <- sapply(dups, FUN = function(x){
             x <- as.matrix(x)
             temp <- as.numeric(x[which(abs(as.numeric(x[, "seg.mean"])) 
-                == max(abs(as.numeric(x[, "seg.mean"])))), "seg.mean"])
+                == max(abs(as.numeric(x[, "seg.mean"])), na.rm = TRUE)), "seg.mean"])
             return(temp[1])
           })
       mapped <- as.matrix(mapped[!duplicated(mapped[, "geneid"]), ])
-      rownames(mapped) <- mapped[, "geneid"]
+      rownames(mapped) <- gsub(" ", "", mapped[, "geneid"])
       mapped[as.character(names(dups)), "seg.mean"] <- as.numeric(dups)
   }
   return(mapped)
