@@ -6,8 +6,9 @@ Author: Jianhua Zhang
 Maintainer: J. Zhang <jzhang@jimmy.harvard.edu>
 Depends: methods, stats, genefilter
 Description: This package provides tools to convert the output of 
-  segmentation analysis using DNAcopy to a matrix structure so that 
-  classifications can be applied to segmented copy number data 
+  segmentation analysis using DNAcopy to a matrix structure with
+  overlapping segments as rows and samples as columns so that other
+  computational analyses can be applied to segmented data  
 Keyword: copy number
 biocViews: Platform, Microarray
 License: LGPL

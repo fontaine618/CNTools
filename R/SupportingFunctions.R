@@ -3,7 +3,7 @@ CNSeg <- function(segList){
 }
 
 RS <- function(rs, by){
-    return(new("RS", rs = rs, by = by))
+    return(new("RS", rs = as.data.frame(rs), by = by))
 }
 
 seg2RS <- function(segData, by = c("region", "gene", "pair"), 
@@ -166,8 +166,8 @@ collapseSegList <- function(segList, geneMap){
                             as.numeric(filled[, "seg.mean"])
   }
   cat(" Done\n")
-  return(template[apply(template[, 7:ncol(template)], 1, 
-                  FUN = function(x) !all(is.na(x))), ])
+  return(as.data.frame(template[apply(template[, 6:ncol(template), 
+      drop = FALSE], 1, FUN = function(x) !all(is.na(x))), ]))
 }
 
 
@@ -358,7 +358,7 @@ procRefGene <- function(refGene, refLink){
   
   return(sortByChromNLoc(merged, by1 = "chrom", by2 = "start"))
 }
-
+  
 
 # Sort mapped in order by chromsome and then by location
 sortByChromNLoc <- function(sortMe, by1 = "Ch", by2 = "Pos"){
