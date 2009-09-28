@@ -1,7 +1,7 @@
 Package: CNTools
-Version: 1.0.4
-Title: Convert segment data so that classification can be performed 
-  on copy number data 
+Version: 1.0.5
+Title: Convert segment data into a region by sample matrix to allow for 
+  other high level computational analyses. 
 Author: Jianhua Zhang
 Maintainer: J. Zhang <jzhang@jimmy.harvard.edu>
 Depends: methods, stats, genefilter

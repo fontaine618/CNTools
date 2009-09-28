@@ -3,7 +3,7 @@ CNSeg <- function(segList){
 }
 
 RS <- function(rs, by){
-    return(new("RS", rs = as.data.frame(rs), by = by))
+    return(new("RS", rs = rs, by = by))
 }
 
 seg2RS <- function(segData, by = c("region", "gene", "pair"), 
@@ -22,8 +22,12 @@ seg2RS <- function(segData, by = c("region", "gene", "pair"),
                    drop = TRUE),
                gene = collapseSegList(segList(segData), geneMap),
                pair = getPairwise(segList(segData)))
+  
   if(input & by != "pair"){
-     rs <- convertRS(rs, sampleStart = ifelse(by == "region", 4, 6)) 
+     rs <- convertRS(rs, sampleStart = ifelse(by == "region", 4, 6))
+  }
+  if(by != "pair"){
+      return(RS(as.data.frame(rs), by))
   }
   return(RS(rs, by))
 }
@@ -232,7 +236,7 @@ getPairwise <- function(segList){
     for(i in 1:(length(uniqueSamples) -1)){ 
         cat(".")
         for(j in (i + 1):length(uniqueSamples)){ 
-            rs <- getCommonSegValues(segList[which(segList[, "ID"] 
+            rs <- CNTools:::getCommonSegValues(segList[which(segList[, "ID"] 
             %in% c(uniqueSamples[i], uniqueSamples[j])), ], 
             drop = TRUE, verbose = FALSE)
             rs <- rs[!(is.na(rs[, uniqueSamples[i]]) | 
