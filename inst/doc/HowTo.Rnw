@@ -54,7 +54,7 @@ The segment list is then used to instantiate a CNSeg object that is associated w
 \begin{itemize}
 \item object: a CNSeg object containing the segment list of concern
 \item by: a character string that can be either "region", "gene", or "pair" indicating which of the three algorithms to use to convert the data
-\item input: a boolean of TRUE or FALSE to indicate whether missing values will be inputed
+\item imput: a boolean of TRUE or FALSE to indicate whether missing values will be imputed
 \item XY: a boolean of TRUE or FALSE to indicate whether data on the X and Y chromosomes will be included.
 \item geneMap: a matrix containing five columns named as chrom - the chromosome a gene is on, start - start location of a gene, end - ending location of a gene, geneid - entrez gene id, and genename - official gene symbol. geneInfo is required when by == "gene". An example of geneInfo can be found by loading the geneInfo object using data("geneInfo"). The object was built for human genes based on build 36.
 \end{itemize}
@@ -63,10 +63,10 @@ In this example, we elected to generate a reduced segment matrix of overlapping 
 
 <<>>=
 cnseg <- CNSeg(sampleData[which(is.element(sampleData[, "ID"], sample(unique(sampleData[, "ID"]), 20))), ])
-rdseg <- getRS(cnseg, by = "region", input = FALSE, XY = FALSE)
+rdseg <- getRS(cnseg, by = "region", imput = FALSE, XY = FALSE)
 data("geneInfo")
 geneInfo <- geneInfo[sample(1:nrow(geneInfo), 2000), ]
-rdByGene <- getRS(cnseg, by = "gene", input = FALSE, XY = FALSE, geneMap = geneInfo)
+rdByGene <- getRS(cnseg, by = "gene", imput = FALSE, XY = FALSE, geneMap = geneInfo)
 @
 
 The rdseg obtained contains the reduced segment matrix and can be extracted by using the rs method if the uses prefer to pursue further computational analyses using their own code.

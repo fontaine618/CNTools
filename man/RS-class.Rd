@@ -17,7 +17,7 @@
     computational operations}
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("RS", ...)}.
-A constructor RS(rs, by, input, XY) can also be used to intantiate 
+A constructor RS(rs, by, imput, XY) can also be used to intantiate 
 an object of this class
 }
 \section{Slots}{
@@ -59,7 +59,7 @@ an object of this class
     data("sampleData")
     # take a subset of the data for speed
     seg <- CNSeg(sampleData[which(is.element(sampleData[, "ID"], sample(unique(sampleData[, "ID"]), 20))), ])
-    rsByregion <- getRS(seg, by = "region", input = TRUE, XY = FALSE)
+    rsByregion <- getRS(seg, by = "region", imput = TRUE, XY = FALSE)
     rsByregion
 }
 \keyword{classes}

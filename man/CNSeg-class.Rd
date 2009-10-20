@@ -50,7 +50,7 @@ CNSeg object
    data("sampleData")
    # take a subset of the data for speed
    seg <- CNSeg(sampleData[which(is.element(sampleData[, "ID"], sample(unique(sampleData[, "ID"]), 10))), ])
-    rsBypair <- getRS(seg, by = "pair", input = FALSE, XY = FALSE)
+    rsBypair <- getRS(seg, by = "pair", imput = FALSE, XY = FALSE)
     rsBypair
 }
 \keyword{classes}

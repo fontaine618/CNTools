@@ -7,7 +7,7 @@ RS <- function(rs, by){
 }
 
 seg2RS <- function(segData, by = c("region", "gene", "pair"), 
-    input = TRUE, XY = FALSE, geneMap){
+    imput = TRUE, XY = FALSE, geneMap){
   by <- match.arg(by)
   if(by == "gene" & missing(geneMap)){
       stop("Need geneMap when by == \"gene\"")
@@ -23,7 +23,7 @@ seg2RS <- function(segData, by = c("region", "gene", "pair"),
                gene = collapseSegList(segList(segData), geneMap),
                pair = getPairwise(segList(segData)))
   
-  if(input & by != "pair"){
+  if(imput & by != "pair"){
      rs <- convertRS(rs, sampleStart = ifelse(by == "region", 4, 6))
   }
   if(by != "pair"){
