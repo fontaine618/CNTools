@@ -10,7 +10,7 @@ Description: This package provides tools to convert the output of
   overlapping segments as rows and samples as columns so that other
   computational analyses can be applied to segmented data  
 Keyword: copy number
-biocViews: Platform, Microarray
+biocViews: Platform, Microarray, CopyNumberVariants
 License: LGPL
 ZipData: no
 LazyLoad: no
