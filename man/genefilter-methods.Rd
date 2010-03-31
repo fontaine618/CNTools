@@ -2,13 +2,13 @@
 \docType{methods}
 \alias{genefilter-methods}
 \alias{genefilter,RS-method}
-\title{ ~~ Methods for Function genefilter  ~~}
+\title{A method that filters feature based on reduced segment}
 \description{
- ~~ Methods for function \code{genefilter}  ~~
+    Extends genefilter filtering functions to handle reduced segment data
 }
 \section{Methods}{
 \describe{
 
-\item{expr = "RS"}{ ~~describe this method here }
+\item{expr = "RS"}{A character string to indicate that filtering is based on reduced segment data}
 }}
 \keyword{methods}
