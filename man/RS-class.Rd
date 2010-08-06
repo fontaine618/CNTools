@@ -59,7 +59,7 @@ an object of this class
     data("sampleData")
     # take a subset of the data for speed
     seg <- CNSeg(sampleData[which(is.element(sampleData[, "ID"], sample(unique(sampleData[, "ID"]), 20))), ])
-    rsByregion <- getRS(seg, by = "region", imput = TRUE, XY = FALSE)
+    rsByregion <- getRS(seg, by = "region", imput = TRUE, XY = FALSE, what = "median")
     rsByregion
 }
 \keyword{classes}

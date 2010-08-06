@@ -57,16 +57,17 @@ The segment list is then used to instantiate a CNSeg object that is associated w
 \item imput: a boolean of TRUE or FALSE to indicate whether missing values will be imputed
 \item XY: a boolean of TRUE or FALSE to indicate whether data on the X and Y chromosomes will be included.
 \item geneMap: a matrix containing five columns named as chrom - the chromosome a gene is on, start - start location of a gene, end - ending location of a gene, geneid - entrez gene id, and genename - official gene symbol. geneInfo is required when by == "gene". An example of geneInfo can be found by loading the geneInfo object using data("geneInfo"). The object was built for human genes based on build 36.
+\item what: a character that can only be mean, median, max, or min that set the rule when a region has multiple segment values.
 \end{itemize}
 
 In this example, we elected to generate a reduced segment matrix of overlapping chromosomal regions without inputting missing values and drop data on the X and Y chromosomes (there are samples from both male and female patients in the data set). As the sample data contains more than 200 samples, in the example here, we use 20 of them due to reduce the time to run the examples. For computation by gene, we also truncated geneMap to reduce the time required to run the example. A test run of the whole data set (277 sample) on a MacPro calling \Rfunction{getRS} by region took about 9 minutes. In average, it takes around 20 minutes to run the whole data set. 
 
 <<>>=
 cnseg <- CNSeg(sampleData[which(is.element(sampleData[, "ID"], sample(unique(sampleData[, "ID"]), 20))), ])
-rdseg <- getRS(cnseg, by = "region", imput = FALSE, XY = FALSE)
+rdseg <- getRS(cnseg, by = "region", imput = FALSE, XY = FALSE, what = "mean")
 data("geneInfo")
 geneInfo <- geneInfo[sample(1:nrow(geneInfo), 2000), ]
-rdByGene <- getRS(cnseg, by = "gene", imput = FALSE, XY = FALSE, geneMap = geneInfo)
+rdByGene <- getRS(cnseg, by = "gene", imput = FALSE, XY = FALSE, geneMap = geneInfo, what = "median")
 @
 
 The rdseg obtained contains the reduced segment matrix and can be extracted by using the rs method if the uses prefer to pursue further computational analyses using their own code.

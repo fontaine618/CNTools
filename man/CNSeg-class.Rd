@@ -27,6 +27,16 @@ CNSeg object
     \item{\code{segList}:}{Object of class \code{"data.frame"} is
     the "output" element of the object return by the segment 
     function of DNACopy}
+    \item{\code{chromosome}:}{Object of class \code{"character"} is
+    the name of the column in segList that contains the chromosome name a given segment belong to}
+    \item{\code{end}:}{Object of class \code{"character"} is
+    the name of the column in segList that contains the ending locatino of a given segment}
+    \item{\code{start}:}{Object of class \code{"character"} is
+    the name of the column in segList that contains the starting location of a given segment}
+    \item{\code{segMean}:}{Object of class \code{"character"} is
+    the name of the column in segList that contains the mean log ratio of a given segment}
+    \item{\code{id}:}{Object of class \code{"character"} is
+    the name of the column in segList that contains the id of a given segment}
   }
 }
 \section{Methods}{
@@ -49,8 +59,9 @@ CNSeg object
 \examples{
    data("sampleData")
    # take a subset of the data for speed
-   seg <- CNSeg(sampleData[which(is.element(sampleData[, "ID"], sample(unique(sampleData[, "ID"]), 10))), ])
-    rsBypair <- getRS(seg, by = "pair", imput = FALSE, XY = FALSE)
-    rsBypair
+   seg <- CNSeg(sampleData[which(is.element(sampleData[, "ID"], 
+       sample(unique(sampleData[, "ID"]), 10))), ])
+   rsBypair <- getRS(seg, by = "pair", imput = FALSE, XY = FALSE, what = "mean")
+   rsBypair
 }
 \keyword{classes}

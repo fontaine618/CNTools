@@ -3,28 +3,62 @@
 # Copyright 2009, Jianhua Zhang, all rights reserved
 #
 
-setClass("CNSeg", representation(segList = "data.frame"))
+setClass("CNSeg", representation(segList = "data.frame", 
+                                 id = "character",
+                                 chromosome = "character",
+                                 start = "character",
+                                 end = "character",
+                                 segMean = "character"))
 
 setClass("RS", representation(rs = "ANY", 
                               by = "character"))
 
-setGeneric("getRS", function(object, by, imput, XY, geneMap)
+setGeneric("getRS", function(object, by = c("region", "gene", "pair"), imput = TRUE, XY = FALSE, 
+    geneMap, what = c("mean", "max", "mini", "median"),  mapChrom = "chrom", 
+    mapStart = "start", mapEnd = "end")
            standardGeneric("getRS"))
 setMethod("getRS", "CNSeg", 
           function(object, by = c("region", "gene", "pair"), 
-            imput = TRUE, XY = FALSE, geneMap)
-              seg2RS(object, by, imput, XY, geneMap))
+            imput = TRUE, XY = FALSE, geneMap, what = c("mean", "max", "mini", "median"), 
+            mapChrom = "chrom",  mapStart = "start", mapEnd = "end")
+              seg2RS(object, by, imput, XY, geneMap, what = what, mapChrom = mapChrom, 
+              mapStart = mapStart, mapEnd = mapEnd))
 
 setGeneric("segList", function(object)
            standardGeneric("segList"))
 setMethod("segList", "CNSeg",
-          function(object) object@segList) 
+          function(object) object@segList)
+          
+setGeneric("chromosome", function(object)
+           standardGeneric("chromosome"))
+setMethod("chromosome", "CNSeg",
+          function(object) object@chromosome) 
+          
+setGeneric("start", function(object)
+	             standardGeneric("start"))
+	  setMethod("start", "CNSeg",
+          function(object) object@start)
+          
+setGeneric("end", function(object)
+           standardGeneric("end"))
+setMethod("end", "CNSeg",
+          function(object) object@end)
+
+setGeneric("segMean", function(object)
+           standardGeneric("segMean"))
+setMethod("segMean", "CNSeg",
+          function(object) object@segMean)
+          
+setGeneric("id", function(object)
+           standardGeneric("id"))
+setMethod("id", "CNSeg",
+          function(object) object@id)
  
 setMethod("show", "CNSeg",
           function(object) {
             cat("Object of CNSeg\n")
             cat(paste("Number of samples:", 
-                 length(unique(segList(object)[, "ID"])), 
+                 length(unique(segList(object)[, id(object)])), 
                  "\n"), sep = " ")
             cat(paste("\tRow = ", nrow(segList(object)), 
                 "\n", sep = ""))
