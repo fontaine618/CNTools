@@ -1,5 +1,5 @@
 Package: CNTools
-Version: 1.19.0
+Version: 1.19.1
 Title: Convert segment data into a region by sample matrix to allow for 
   other high level computational analyses. 
 Author: Jianhua Zhang
