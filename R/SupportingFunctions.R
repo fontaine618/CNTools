@@ -141,7 +141,8 @@ getPairwise <- function(segData, imput, XY, what){
                 segChrom = chromosome(segData), segStart = start(segData), segEnd = end(segData), 
                 segMean = segMean(segData))
             rs <- rs[!(is.na(rs[, uniqueSamples[i]]) | 
-               is.na(rs[, uniqueSamples[j]]) | is.infinite(rs[,uniqueSamples[i]]) | is.infinite(rs[,uniqueSamples[j]])), ] 
+               is.na(rs[, uniqueSamples[j]]) | is.infinite(rs[,uniqueSamples[i]]) | is.infinite(rs[,uniqueSamples[j]]) |
+	       is.nan(rs[,uniqueSamples[i]]) | is.nan(rs[,uniqueSamples[j]])), ] 
             rsList[[paste(i, j, sep = "")]] <- rs[, -c(1:3)]
         }
     }
